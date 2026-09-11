@@ -8,6 +8,7 @@
     "scheme": "ritmo",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
+    "primaryColor": "#7C5CFF",
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
@@ -33,7 +34,9 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "backgroundColor": "#0B0B0F",
+      "themeColor": "#7C5CFF"
     },
     "plugins": [
       "expo-router",
@@ -41,7 +44,14 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
           "resizeMode": "contain",
+          "backgroundColor": "#0B0B0F"
+        }
+      ],
+      [
+        "expo-system-ui",
+        {
           "backgroundColor": "#0B0B0F"
         }
       ]
@@ -51,9 +61,7 @@
     },
     "extra": {
       "router": {},
-      "eas": {
-        "projectId": "replace-with-eas-project-id"
-      }
+      "eas": {}
     }
   }
 }

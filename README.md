@@ -57,39 +57,29 @@ Ver `.env.example`:
 - `EXPO_PUBLIC_RC_IOS_KEY`
 - `EXPO_PUBLIC_RC_ANDROID_KEY`
 
-## Checklist — App Store / Play (publicar)
+## Marca / assets
 
-### Contas e identidade
-- [ ] Apple Developer Program ativo + App Store Connect app `Ritmo` (`com.ritmo.app`)
-- [ ] Google Play Console app criado com package `com.ritmo.app`
-- [ ] EAS project: `eas init` / colar `extra.eas.projectId` real em `app.json`
-- [ ] Ícone 1024×1024, splash, adaptive icons (assets já no repo — validar visual final)
+Ícone 1024×1024, splash, adaptive Android e favicon em `assets/images/` — fundo `#0B0B0F`, accent `#7C5CFF`.
 
-### Assinaturas / IAP
-- [ ] App Store Connect → Subscriptions: `ritmo_pro_monthly`, `ritmo_pro_annual` + trial 7 dias
-- [ ] Google Play → Subscriptions: mesmos product IDs + free trial 7 dias
-- [ ] Privacy policy URL + Terms of Use (assinatura auto-renovável) linkados nas stores
-- [ ] RevenueCat: apps iOS/Android, products, entitlement `pro`, offering **Current**
-- [ ] Colar keys públicas (`EXPO_PUBLIC_RC_IOS_KEY` / `EXPO_PUBLIC_RC_ANDROID_KEY`) em `.env` **e** EAS secrets
-- [ ] Sandbox testers (Apple) + license testers (Google)
+## EAS / stores
 
-### Compliance / metadata
-- [ ] Screenshots dark premium: Hoje, Foco, Progresso, Paywall (iPhone 6.7" + 6.1"; Android phone)
-- [ ] Descrição curta/longa, keywords, categoria (Productivity / Health & Fitness)
-- [ ] Age rating / content rating questionnaire
-- [ ] Data safety / privacy nutrition labels (AsyncStorage local; compras via store; sem tracking se N/A)
-- [ ] Export compliance / encryption (standard HTTPS only se aplicável)
+**TODO (Simão):** este ambiente não tem `eas login`. No teu Mac:
 
-### Build & submit
-- [ ] `eas build -p ios --profile production`
-- [ ] `eas build -p android --profile production` (AAB)
-- [ ] Testar **restore purchases** em device real (não Expo Go) com sandbox
-- [ ] `eas submit -p ios` / `eas submit -p android` (ou upload manual)
-- [ ] Review notes: explicar mock vs produção, conta sandbox, fluxo Pro
+```bash
+eas login
+npx eas-cli@latest init --non-interactive   # grava projectId real em app.json
+```
 
-### Pós-submit
-- [ ] Remover / esconder toggle **DEV · Toggle Pro** em builds de produção (ou `!__DEV__`)
-- [ ] Monitorar crashes (Sentry opcional) e cancelamentos RevenueCat
+Não inventar UUID. Guia completo com cliques (App Store Connect, Play Console, RevenueCat, privacy URL placeholder): ver **[STORE.md](./STORE.md)**.
+
+Resumo checklist:
+- [ ] `eas init` → `extra.eas.projectId` real
+- [ ] ASC + Play apps `com.ritmo.app`
+- [ ] Products `ritmo_pro_monthly` / `ritmo_pro_annual` + trial 7 dias
+- [ ] RevenueCat entitlement `pro` + keys em `.env` / EAS secrets
+- [ ] Privacy URL (`https://SEU_DOMINIO/privacy`) + screenshots
+- [ ] `eas build` production → testar restore em device → `eas submit`
+- [ ] Esconder **DEV · Toggle Pro** em produção
 
 ## Estrutura
 
