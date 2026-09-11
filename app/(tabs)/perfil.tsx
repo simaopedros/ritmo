@@ -66,26 +66,30 @@ export default function PerfilScreen() {
           onPress={onRestore}
         />
 
-        <View style={styles.devCard}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.devTitle}>DEV · Toggle Pro</Text>
-            <Text style={styles.devSub}>
-              {isPurchasesMock()
-                ? 'Purchases em mock (seguro no Expo Go)'
-                : 'Simula entitlement pro localmente'}
-            </Text>
-          </View>
-          <Switch
-            value={isPro}
-            onValueChange={setIsPro}
-            trackColor={{ false: colors.border, true: colors.accent }}
-            thumbColor={colors.white}
-          />
-        </View>
+        {__DEV__ ? (
+          <>
+            <View style={styles.devCard}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.devTitle}>DEV · Toggle Pro</Text>
+                <Text style={styles.devSub}>
+                  {isPurchasesMock()
+                    ? 'Purchases em mock (seguro no Expo Go)'
+                    : 'Simula entitlement pro localmente'}
+                </Text>
+              </View>
+              <Switch
+                value={isPro}
+                onValueChange={setIsPro}
+                trackColor={{ false: colors.border, true: colors.accent }}
+                thumbColor={colors.white}
+              />
+            </View>
 
-        <Pressable onPress={() => router.push('/paywall')}>
-          <Text style={styles.link}>Ver paywall</Text>
-        </Pressable>
+            <Pressable onPress={() => router.push('/paywall')}>
+              <Text style={styles.link}>Ver paywall</Text>
+            </Pressable>
+          </>
+        ) : null}
 
         <View style={styles.about}>
           <Text style={styles.aboutTitle}>Sobre o Ritmo</Text>

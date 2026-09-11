@@ -52,7 +52,8 @@ export function FocusRing({
           strokeWidth={stroke}
           fill="none"
         />
-        <G rotation={-90} origin={`${size / 2}, ${size / 2}`}>
+        {/* SVG rotate() avoids web DOM `transform-origin` from rotation/origin props */}
+        <G transform={`rotate(-90 ${size / 2} ${size / 2})`}>
           <AnimatedCircle
             cx={size / 2}
             cy={size / 2}

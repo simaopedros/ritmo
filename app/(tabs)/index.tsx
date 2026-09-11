@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import {
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -100,7 +101,16 @@ export default function HojeScreen() {
               />
             ))}
             {active.length === 0 ? (
-              <Text style={styles.empty}>Nenhum hábito ainda. Crie o primeiro.</Text>
+              <View style={styles.emptyCard}>
+                <Text style={styles.emptyEmoji}>✨</Text>
+                <Text style={styles.emptyTitle}>Nenhum hábito ainda</Text>
+                <Text style={styles.empty}>
+                  Crie o primeiro e comece seu ritmo diário.
+                </Text>
+                <Pressable onPress={onAddHabit} hitSlop={8}>
+                  <Text style={styles.emptyCta}>+ Criar hábito</Text>
+                </Pressable>
+              </View>
             ) : null}
           </View>
 
@@ -199,7 +209,26 @@ const styles = StyleSheet.create({
   sectionTitle: { ...typography.h3, color: colors.text },
   addLink: { ...typography.bodyBold, color: colors.accentSoft },
   list: { gap: 10 },
-  empty: { ...typography.body, color: colors.textMuted },
+  emptyCard: {
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 28,
+    paddingHorizontal: 16,
+    borderRadius: radius.xl,
+    borderWidth: 1,
+    borderColor: colors.borderSubtle,
+    borderStyle: 'dashed',
+    backgroundColor: colors.bgElevated,
+  },
+  emptyEmoji: { fontSize: 28 },
+  emptyTitle: { ...typography.h3, color: colors.text },
+  empty: {
+    ...typography.body,
+    color: colors.textMuted,
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  emptyCta: { ...typography.bodyBold, color: colors.accentSoft, marginTop: 4 },
   closeDay: {
     marginTop: spacing.md,
     borderRadius: radius.xl,
@@ -210,10 +239,19 @@ const styles = StyleSheet.create({
   },
   closeDayHot: {
     borderColor: colors.gold,
-    shadowColor: colors.gold,
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
-    elevation: 4,
+    ...Platform.select({
+      web: {
+        // RN-web: prefer boxShadow over deprecated shadow* props
+        boxShadow: '0 0 24px rgba(245, 197, 66, 0.28)',
+      } as const,
+      default: {
+        shadowColor: colors.gold,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        elevation: 4,
+      },
+    }),
   },
   closeDayInner: {
     flexDirection: 'row',

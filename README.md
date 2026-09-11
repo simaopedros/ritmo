@@ -57,17 +57,39 @@ Ver `.env.example`:
 - `EXPO_PUBLIC_RC_IOS_KEY`
 - `EXPO_PUBLIC_RC_ANDROID_KEY`
 
-## Checklist lojas
+## Checklist — App Store / Play (publicar)
 
-- [ ] Criar app App Store Connect + Google Play (`com.ritmo.app`)
-- [ ] Produtos IAP: `ritmo_pro_monthly`, `ritmo_pro_annual` (+ trial 7 dias)
-- [ ] RevenueCat: apps iOS/Android, products, entitlement `pro`, offering Current
-- [ ] Colar keys públicas no `.env` / EAS secrets
-- [ ] Privacy policy + termos (assinatura auto-renovável)
-- [ ] Screenshots dark premium (Hoje, Foco, Progresso, Paywall)
-- [ ] Build EAS: `eas build -p ios` / `eas build -p android`
-- [ ] Testar restore purchases em device real (não Expo Go)
-- [ ] Sandbox / license testers
+### Contas e identidade
+- [ ] Apple Developer Program ativo + App Store Connect app `Ritmo` (`com.ritmo.app`)
+- [ ] Google Play Console app criado com package `com.ritmo.app`
+- [ ] EAS project: `eas init` / colar `extra.eas.projectId` real em `app.json`
+- [ ] Ícone 1024×1024, splash, adaptive icons (assets já no repo — validar visual final)
+
+### Assinaturas / IAP
+- [ ] App Store Connect → Subscriptions: `ritmo_pro_monthly`, `ritmo_pro_annual` + trial 7 dias
+- [ ] Google Play → Subscriptions: mesmos product IDs + free trial 7 dias
+- [ ] Privacy policy URL + Terms of Use (assinatura auto-renovável) linkados nas stores
+- [ ] RevenueCat: apps iOS/Android, products, entitlement `pro`, offering **Current**
+- [ ] Colar keys públicas (`EXPO_PUBLIC_RC_IOS_KEY` / `EXPO_PUBLIC_RC_ANDROID_KEY`) em `.env` **e** EAS secrets
+- [ ] Sandbox testers (Apple) + license testers (Google)
+
+### Compliance / metadata
+- [ ] Screenshots dark premium: Hoje, Foco, Progresso, Paywall (iPhone 6.7" + 6.1"; Android phone)
+- [ ] Descrição curta/longa, keywords, categoria (Productivity / Health & Fitness)
+- [ ] Age rating / content rating questionnaire
+- [ ] Data safety / privacy nutrition labels (AsyncStorage local; compras via store; sem tracking se N/A)
+- [ ] Export compliance / encryption (standard HTTPS only se aplicável)
+
+### Build & submit
+- [ ] `eas build -p ios --profile production`
+- [ ] `eas build -p android --profile production` (AAB)
+- [ ] Testar **restore purchases** em device real (não Expo Go) com sandbox
+- [ ] `eas submit -p ios` / `eas submit -p android` (ou upload manual)
+- [ ] Review notes: explicar mock vs produção, conta sandbox, fluxo Pro
+
+### Pós-submit
+- [ ] Remover / esconder toggle **DEV · Toggle Pro** em builds de produção (ou `!__DEV__`)
+- [ ] Monitorar crashes (Sentry opcional) e cancelamentos RevenueCat
 
 ## Estrutura
 
