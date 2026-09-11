@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import {
   Alert,
+  Linking,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -17,6 +18,7 @@ import {
   PRO_FEATURES,
   TRIAL_COPY,
 } from '@/constants/pricing';
+import { LEGAL_URLS } from '@/constants/legal';
 import { colors, radius, spacing, typography } from '@/constants/theme';
 import { isPurchasesMock, purchasePackage, restorePurchases } from '@/lib/purchases';
 import { useRitmoStore } from '@/store/useRitmoStore';
@@ -165,6 +167,17 @@ export default function PaywallScreen() {
             onPress={restore}
             disabled={loading}
           />
+
+          <View style={styles.legalRow}>
+            <Pressable onPress={() => Linking.openURL(LEGAL_URLS.privacy)} hitSlop={8}>
+              <Text style={styles.legalLink}>Privacidade</Text>
+            </Pressable>
+            <Text style={styles.legalSep}>·</Text>
+            <Pressable onPress={() => Linking.openURL(LEGAL_URLS.terms)} hitSlop={8}>
+              <Text style={styles.legalLink}>Termos</Text>
+            </Pressable>
+          </View>
+
           {isPurchasesMock() ? (
             <Text style={styles.mock}>Purchases: DEV mock ativo</Text>
           ) : null}
@@ -229,4 +242,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 4,
   },
+  legalRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 12,
+  },
+  legalLink: {
+    ...typography.caption,
+    color: colors.accentSoft,
+    textDecorationLine: 'underline',
+  },
+  legalSep: { ...typography.caption, color: colors.textMuted },
 });

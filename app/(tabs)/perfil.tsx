@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Alert,
+  Linking,
   Pressable,
   StyleSheet,
   Switch,
@@ -11,6 +12,7 @@ import { router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenEnter } from '@/components/ScreenEnter';
+import { LEGAL_URLS } from '@/constants/legal';
 import { colors, radius, spacing, typography } from '@/constants/theme';
 import { isPurchasesMock, restorePurchases } from '@/lib/purchases';
 import { useRitmoStore } from '@/store/useRitmoStore';
@@ -98,6 +100,17 @@ export default function PerfilScreen() {
             {'\n'}Versão 1.0.0
           </Text>
         </View>
+
+        <View style={styles.legalRow}>
+          <Pressable onPress={() => Linking.openURL(LEGAL_URLS.privacy)} hitSlop={8}>
+            <Text style={styles.legalLink}>Privacidade</Text>
+          </Pressable>
+          <Text style={styles.legalSep}>·</Text>
+          <Pressable onPress={() => Linking.openURL(LEGAL_URLS.terms)} hitSlop={8}>
+            <Text style={styles.legalLink}>Termos</Text>
+          </Pressable>
+        </View>
+
       </ScreenEnter>
     </SafeAreaView>
   );
@@ -138,4 +151,16 @@ const styles = StyleSheet.create({
   about: { marginTop: 'auto', gap: 6, paddingBottom: 8 },
   aboutTitle: { ...typography.h3, color: colors.text },
   aboutBody: { ...typography.caption, color: colors.textSecondary, lineHeight: 18 },
+  legalRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingBottom: 8,
+  },
+  legalLink: {
+    ...typography.caption,
+    color: colors.accentSoft,
+    textDecorationLine: 'underline',
+  },
+  legalSep: { ...typography.caption, color: colors.textMuted },
 });

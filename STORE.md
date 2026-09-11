@@ -2,8 +2,8 @@
 
 Passo a passo **exato** para Simão. Contas pessoais (Apple / Google / Expo / RevenueCat) são necessárias — o repo não cria projectId falso.
 
-Privacy URL: hospede [`docs/privacy.html`](./docs/privacy.html) → `https://SEU_DOMINIO/privacy.html` (ou `/privacy`)  
-Terms URL: hospede [`docs/terms.html`](./docs/terms.html) → `https://SEU_DOMINIO/terms.html` (ou `/terms`)  
+Privacy URL: [https://simaopedros.github.io/ritmo/privacy.html](https://simaopedros.github.io/ritmo/privacy.html) ([fonte](./docs/privacy.html))  
+Terms URL: [https://simaopedros.github.io/ritmo/terms.html](https://simaopedros.github.io/ritmo/terms.html) ([fonte](./docs/terms.html))  
 Cópias Markdown: [`docs/privacy.md`](./docs/privacy.md), [`docs/terms.md`](./docs/terms.md)  
 Screenshots: [`store-screenshots/`](./store-screenshots/) (ordem e captions em `store-screenshots/README.md`)
 
@@ -63,7 +63,7 @@ Expo **não** está logado neste ambiente. No teu Mac:
 5. **Paid Apps Agreement** + banking/tax devem estar Active
 
 ### Metadata mínimo
-- Privacy Policy URL: hospede `docs/privacy.html` (ex.: `https://SEU_DOMINIO/privacy.html`)
+- Privacy Policy URL: `https://simaopedros.github.io/ritmo/privacy.html`
 - Category: Productivity (sec.: Health & Fitness)
 - Screenshots dark: ver `store-screenshots/` (Hoje, Foco, Review, Paywall, Perfil — 6.7" + 6.1")
 - Age Rating questionnaire
@@ -79,7 +79,7 @@ Users and Access → Sandbox → Testers → cria tester para restore / purchase
 1. [Play Console](https://play.google.com/console) → **Create app**
 2. App name: `Ritmo` · Default language: Portuguese (Brazil)
 3. App / Game: App · Free · declarations
-4. Dashboard → complete **Privacy policy** (URL de `docs/privacy.html`), **App content**, **Data safety**
+4. Dashboard → complete **Privacy policy** (`https://simaopedros.github.io/ritmo/privacy.html`), **App content**, **Data safety**
 
 ### Assinaturas
 1. Monetize → **Products** → **Subscriptions** → **Create subscription**
@@ -139,7 +139,7 @@ eas submit -p android --profile production
 - [ ] `eas init` + `projectId` real no `app.json`
 - [ ] ASC app + subscriptions `ritmo_pro_monthly` / `ritmo_pro_annual` + trial 7d
 - [ ] Play app + mesmos product IDs + trial 7d
-- [ ] Privacy / Terms no ar (`docs/privacy.html`, `docs/terms.html`)
+- [x] Privacy / Terms no ar ([privacy](https://simaopedros.github.io/ritmo/privacy.html), [terms](https://simaopedros.github.io/ritmo/terms.html))
 - [ ] RevenueCat entitlement `pro` + offering Current
 - [ ] Keys no `.env` e EAS secrets
 - [ ] Screenshots (`store-screenshots/`) + metadata
