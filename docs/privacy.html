@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidade — Ritmo</title>
+  <meta name="description" content="Política de Privacidade do aplicativo Ritmo (com.ritmo.app)." />
+  <style>
+    :root {
+      --bg: #0B0B0F;
+      --fg: #F4F4F8;
+      --muted: #A0A0B0;
+      --accent: #7C5CFF;
+      --card: #16161E;
+      --border: #2A2A36;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 0.25rem; letter-spacing: -0.02em; }
+    h2 { font-size: 1.15rem; margin: 2rem 0 0.75rem; color: var(--fg); }
+    p, li { color: var(--muted); }
+    a { color: var(--accent); }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    ul { padding-left: 1.2rem; }
+    footer { margin-top: 3rem; font-size: 0.85rem; color: var(--muted); }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="./privacy.html">Privacidade</a>
+      <a href="./terms.html">Termos</a>
+    </nav>
+    <h1>Política de Privacidade</h1>
+    <p class="meta">App <strong>Ritmo</strong> · pacote <code>com.ritmo.app</code> · Última atualização: 11 de setembro de 2026</p>
+
+    <div class="card">
+      <p style="margin:0">O Ritmo é <strong>local-first</strong>: hábitos, foco, reviews e progresso ficam no seu dispositivo. No MVP <strong>não é necessário criar conta</strong>.</p>
+    </div>
+
+    <h2>1. Quem somos</h2>
+    <p>Esta política descreve como o aplicativo móvel Ritmo (“App”) trata informações. Contato: <a href="mailto:privacidade@ritmo.app">privacidade@ritmo.app</a> (placeholder — substitua pelo e-mail definitivo antes da publicação nas lojas).</p>
+
+    <h2>2. Dados que processamos</h2>
+    <ul>
+      <li><strong>Dados de uso do app (locais):</strong> hábitos, conclusões diárias, sessões de foco (Pomodoro), humor/review, streak e preferências. Armazenados no dispositivo (ex.: AsyncStorage).</li>
+      <li><strong>Compras / assinatura:</strong> se você assinar o Ritmo Pro, a compra é processada pela <strong>Apple</strong> (App Store) ou <strong>Google</strong> (Play Store). Podemos receber, via RevenueCat ou APIs das lojas, o status da assinatura/entitlement (ex.: se você tem Pro), sem receber o número do cartão.</li>
+      <li><strong>Sem conta no MVP:</strong> não pedimos e-mail, nome ou login para usar o app na versão inicial.</li>
+      <li><strong>Sem tracking de anúncios:</strong> o App não usa IDFA/AAID para publicidade no MVP e não vende seus dados.</li>
+    </ul>
+
+    <h2>3. Finalidade</h2>
+    <p>Usamos os dados locais apenas para fornecer o produto (lembretes de hábitos, timer de foco, review diária, limites Free/Pro). O status de assinatura serve para liberar recursos Pro e restaurar compras.</p>
+
+    <h2>4. Compartilhamento</h2>
+    <ul>
+      <li><strong>Apple / Google:</strong> processam pagamentos e restauração de compras conforme as políticas deles.</li>
+      <li><strong>RevenueCat</strong> (quando configurado): intermediário de assinaturas; recebe identificadores de compra/app necessários para validar o entitlement <code>pro</code>.</li>
+      <li>Não vendemos dados pessoais a terceiros.</li>
+    </ul>
+
+    <h2>5. Retenção e exclusão</h2>
+    <p>Dados locais permanecem no aparelho até você limpar o armazenamento do app ou desinstalá-lo. Para gerenciar assinaturas, use as configurações da App Store ou Google Play. Pedidos adicionais: <a href="mailto:privacidade@ritmo.app">privacidade@ritmo.app</a>.</p>
+
+    <h2>6. Crianças</h2>
+    <p>O App não é direcionado a menores de 13 anos. Não coletamos intencionalmente dados de crianças.</p>
+
+    <h2>7. Segurança</h2>
+    <p>Dados de hábitos ficam no dispositivo. Transações de compra usam os canais seguros das lojas. Nenhum sistema é 100% livre de risco.</p>
+
+    <h2>8. Alterações</h2>
+    <p>Podemos atualizar esta política. A data no topo indica a versão vigente. Mudanças relevantes podem ser comunicadas no App ou nas páginas das lojas.</p>
+
+    <h2>9. Contato</h2>
+    <p>Dúvidas sobre privacidade: <a href="mailto:privacidade@ritmo.app">privacidade@ritmo.app</a>.</p>
+
+    <footer>
+      <p>Hospede este arquivo em qualquer host estático e use a URL em App Store Connect / Play Console (ex.: <code>https://SEU_DOMINIO/privacy.html</code>).</p>
+      <p>Ver também os <a href="./terms.html">Termos de Uso</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>

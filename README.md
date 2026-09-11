@@ -70,23 +70,27 @@ eas login
 npx eas-cli@latest init --non-interactive   # grava projectId real em app.json
 ```
 
-Não inventar UUID. Guia completo com cliques (App Store Connect, Play Console, RevenueCat, privacy URL placeholder): ver **[STORE.md](./STORE.md)**.
+Não inventar UUID. Guia completo com cliques (App Store Connect, Play Console, RevenueCat): ver **[STORE.md](./STORE.md)**.
+
+Política de privacidade e termos (HTML estático pt-BR, hospedável em qualquer lugar): [`docs/privacy.html`](./docs/privacy.html), [`docs/terms.html`](./docs/terms.html). Pacote de screenshots da loja: [`store-screenshots/`](./store-screenshots/).
 
 Resumo checklist:
 - [ ] `eas init` → `extra.eas.projectId` real
 - [ ] ASC + Play apps `com.ritmo.app`
 - [ ] Products `ritmo_pro_monthly` / `ritmo_pro_annual` + trial 7 dias
 - [ ] RevenueCat entitlement `pro` + keys em `.env` / EAS secrets
-- [ ] Privacy URL (`https://SEU_DOMINIO/privacy`) + screenshots
+- [ ] Privacy / Terms (`docs/privacy.html`, `docs/terms.html`) + screenshots (`store-screenshots/`)
 - [ ] `eas build` production → testar restore em device → `eas submit`
 - [ ] Esconder **DEV · Toggle Pro** em produção
 
 ## Estrutura
 
 ```
-app/               expo-router (tabs + modals)
-components/        UI + FocusRing SVG + animações
-constants/         theme + pricing
-lib/               dates + purchases (mock-aware)
-store/             zustand + async-storage persist
+app/                 expo-router (tabs + modals)
+components/          UI + FocusRing SVG + animações
+constants/           theme + pricing
+docs/                privacy.html + terms.html (pt-BR) + .md
+lib/                 dates + purchases (mock-aware)
+store/               zustand + async-storage persist
+store-screenshots/   pacote App Store / Play
 ```

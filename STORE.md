@@ -2,8 +2,10 @@
 
 Passo a passo **exato** para Simão. Contas pessoais (Apple / Google / Expo / RevenueCat) são necessárias — o repo não cria projectId falso.
 
-Privacy URL (placeholder): `https://SEU_DOMINIO/privacy`  
-Terms URL (placeholder): `https://SEU_DOMINIO/terms`
+Privacy URL: hospede [`docs/privacy.html`](./docs/privacy.html) → `https://SEU_DOMINIO/privacy.html` (ou `/privacy`)  
+Terms URL: hospede [`docs/terms.html`](./docs/terms.html) → `https://SEU_DOMINIO/terms.html` (ou `/terms`)  
+Cópias Markdown: [`docs/privacy.md`](./docs/privacy.md), [`docs/terms.md`](./docs/terms.md)  
+Screenshots: [`store-screenshots/`](./store-screenshots/) (ordem e captions em `store-screenshots/README.md`)
 
 Bundle / package: `com.ritmo.app` · Scheme: `ritmo` · Entitlement: `pro`
 
@@ -61,9 +63,9 @@ Expo **não** está logado neste ambiente. No teu Mac:
 5. **Paid Apps Agreement** + banking/tax devem estar Active
 
 ### Metadata mínimo
-- Privacy Policy URL: `https://SEU_DOMINIO/privacy`
+- Privacy Policy URL: hospede `docs/privacy.html` (ex.: `https://SEU_DOMINIO/privacy.html`)
 - Category: Productivity (sec.: Health & Fitness)
-- Screenshots dark: Hoje, Foco, Progresso, Paywall (6.7" + 6.1")
+- Screenshots dark: ver `store-screenshots/` (Hoje, Foco, Review, Paywall, Perfil — 6.7" + 6.1")
 - Age Rating questionnaire
 - App Privacy: dados locais (AsyncStorage); compras via Apple; sem tracking se N/A
 
@@ -77,7 +79,7 @@ Users and Access → Sandbox → Testers → cria tester para restore / purchase
 1. [Play Console](https://play.google.com/console) → **Create app**
 2. App name: `Ritmo` · Default language: Portuguese (Brazil)
 3. App / Game: App · Free · declarations
-4. Dashboard → complete **Privacy policy** (`https://SEU_DOMINIO/privacy`), **App content**, **Data safety**
+4. Dashboard → complete **Privacy policy** (URL de `docs/privacy.html`), **App content**, **Data safety**
 
 ### Assinaturas
 1. Monetize → **Products** → **Subscriptions** → **Create subscription**
@@ -137,10 +139,10 @@ eas submit -p android --profile production
 - [ ] `eas init` + `projectId` real no `app.json`
 - [ ] ASC app + subscriptions `ritmo_pro_monthly` / `ritmo_pro_annual` + trial 7d
 - [ ] Play app + mesmos product IDs + trial 7d
-- [ ] Privacy URL no ar (hoje: placeholder)
+- [ ] Privacy / Terms no ar (`docs/privacy.html`, `docs/terms.html`)
 - [ ] RevenueCat entitlement `pro` + offering Current
 - [ ] Keys no `.env` e EAS secrets
-- [ ] Screenshots + metadata
+- [ ] Screenshots (`store-screenshots/`) + metadata
 - [ ] Production build + sandbox test + submit
 
 Assets de marca (`assets/images/icon.png` 1024, splash, adaptive, favicon) já estão no repo — tema `#0B0B0F` / accent `#7C5CFF`.
