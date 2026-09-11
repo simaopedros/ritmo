@@ -54,6 +54,13 @@
         {
           "backgroundColor": "#0B0B0F"
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#7C5CFF",
+          "defaultChannel": "ritmo-reminders"
+        }
       ]
     ],
     "experiments": {

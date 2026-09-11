@@ -40,12 +40,12 @@ export default function PaywallScreen() {
 
   const sub = useMemo(() => {
     if (soft === 'habitFocus') {
-      return 'Primeiro hábito + foco concluídos. Continue com hábitos e focos ilimitados.';
+      return 'Primeiro hábito + foco concluídos. No Pro: hábitos/focos ilimitados, insights com ação e lembretes.';
     }
     if (soft === 'review') {
-      return 'Sua review alimenta o streak. No Pro, insights e congelamento mensal acompanham você.';
+      return 'Sua review alimenta o streak. Pro adiciona insights semanais, congelamento (1/mês) e lembretes.';
     }
-    return 'Hábitos ilimitados, foco sem teto, insights e 1 congelamento de streak por mês.';
+    return 'Insights que aconselham, congelamento de streak, lembretes em todos os hábitos — além de limites ilimitados.';
   }, [soft]);
 
   const buy = async () => {

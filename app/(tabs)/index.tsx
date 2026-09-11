@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import {
+  Alert,
   Platform,
   Pressable,
   ScrollView,
@@ -30,6 +31,9 @@ export default function HojeScreen() {
   const shouldShowSoftPaywall = useRitmoStore((s) => s.shouldShowSoftPaywall);
   const markSoftPaywallSeen = useRitmoStore((s) => s.markSoftPaywallSeen);
   const resetFocusDayIfNeeded = useRitmoStore((s) => s.resetFocusDayIfNeeded);
+  const shouldOfferStreakFreeze = useRitmoStore((s) => s.shouldOfferStreakFreeze);
+  const useStreakFreeze = useRitmoStore((s) => s.useStreakFreeze);
+  const getFreezeGapDate = useRitmoStore((s) => s.getFreezeGapDate);
 
   const active = useMemo(
     () => habits.filter((h) => !h.archived),
@@ -38,6 +42,8 @@ export default function HojeScreen() {
   const progress = getTodayProgress();
   const after18 = isAfter18h();
   const reviewedToday = moodEntries.some((m) => m.date === todayKey());
+  const offerFreeze = shouldOfferStreakFreeze();
+  const hasFreezeGap = getFreezeGapDate() !== null;
 
   useFocusEffect(
     useCallback(() => {
@@ -61,6 +67,21 @@ export default function HojeScreen() {
     router.push('/novo-habito');
   };
 
+  const onUseFreeze = () => {
+    const ok = useStreakFreeze();
+    if (ok) {
+      Alert.alert(
+        'Streak congelado',
+        'Ontem foi coberto pelo congelamento. Seu ritmo continua.'
+      );
+    } else {
+      Alert.alert(
+        'Indisponível',
+        'Não há congelamento disponível este mês.'
+      );
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <ScrollView
@@ -77,6 +98,44 @@ export default function HojeScreen() {
               <Text style={styles.streakText}>🔥 {streak}</Text>
             </View>
           </View>
+
+          {offerFreeze ? (
+            <View style={styles.freezeBanner}>
+              <LinearGradient
+                colors={['rgba(245,197,66,0.2)', 'rgba(124,92,255,0.12)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <Text style={styles.freezeTitle}>Streak em risco</Text>
+              <Text style={styles.freezeSub}>
+                Ontem ficou em branco. Use o congelamento (1/mês) para não
+                quebrar a sequência.
+              </Text>
+              <PrimaryButton
+                title="Usar congelamento"
+                variant="gold"
+                onPress={onUseFreeze}
+                style={{ marginTop: 8 }}
+              />
+            </View>
+          ) : null}
+
+          {!isPro && hasFreezeGap ? (
+            <Pressable
+              style={styles.freezeBanner}
+              onPress={() => router.push('/paywall')}
+            >
+              <Text style={styles.freezeTitle}>Streak em risco</Text>
+              <Text style={styles.freezeSub}>
+                Ontem ficou em branco. No Pro você usa 1 congelamento/mês para
+                salvar a sequência.
+              </Text>
+              <Text style={[styles.freezeTeaserText, { marginTop: 8 }]}>
+                🔒 Desbloquear congelamento
+              </Text>
+            </Pressable>
+          ) : null}
 
           <ProgressHeader
             pct={progress.pct}
@@ -167,7 +226,7 @@ export default function HojeScreen() {
           {!isPro ? (
             <Text style={styles.limitHint}>
               Plano free: até {FREE_LIMITS.maxHabits} hábitos ·{' '}
-              {FREE_LIMITS.maxFocusPerDay} focos/dia
+              {FREE_LIMITS.maxFocusPerDay} focos/dia · 1 lembrete
             </Text>
           ) : null}
         </ScreenEnter>
@@ -200,6 +259,32 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,176,32,0.35)',
   },
   streakText: { ...typography.bodyBold, color: colors.warning },
+  freezeBanner: {
+    borderRadius: radius.xl,
+    borderWidth: 1.5,
+    borderColor: colors.gold,
+    padding: 16,
+    overflow: 'hidden',
+    gap: 4,
+  },
+  freezeTitle: { ...typography.h3, color: colors.gold },
+  freezeSub: {
+    ...typography.caption,
+    color: colors.textSecondary,
+    lineHeight: 18,
+  },
+  freezeTeaser: {
+    backgroundColor: colors.bgElevated,
+    borderRadius: radius.lg,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: colors.borderSubtle,
+  },
+  freezeTeaserText: {
+    ...typography.caption,
+    color: colors.textMuted,
+    textAlign: 'center',
+  },
   sectionHead: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -241,7 +326,6 @@ const styles = StyleSheet.create({
     borderColor: colors.gold,
     ...Platform.select({
       web: {
-        // RN-web: prefer boxShadow over deprecated shadow* props
         boxShadow: '0 0 24px rgba(245, 197, 66, 0.28)',
       } as const,
       default: {

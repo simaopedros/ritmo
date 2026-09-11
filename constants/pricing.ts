@@ -25,13 +25,15 @@ export const FREE_LIMITS = {
   maxHabits: 3,
   maxFocusPerDay: 2,
   historyDays: 7,
+  /** Free users get exactly one reminder (habit OR Fechar o dia). */
+  maxReminders: 1,
 } as const;
 
 export const PRO_FEATURES = [
+  'Insights semanais com ações concretas',
+  '1 congelamento de streak por mês',
+  'Lembretes em todos os hábitos + Fechar o dia',
   'Hábitos ilimitados',
   'Foco ilimitado por dia',
-  'Insights avançados',
   'Histórico completo',
-  '1 congelamento de streak por mês',
-  'Temas premium',
 ] as const;

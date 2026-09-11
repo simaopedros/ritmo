@@ -13,6 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenEnter } from '@/components/ScreenEnter';
 import { colors, radius, spacing, typography } from '@/constants/theme';
+import { requestNotificationPermission } from '@/lib/notifications';
 import { useRitmoStore } from '@/store/useRitmoStore';
 
 const EMOJIS = ['✨', '💧', '📚', '🏃', '🧘', '🎯', '🌙', '💪'];
@@ -23,8 +24,14 @@ export default function OnboardingScreen() {
   const [emoji, setEmoji] = useState('✨');
   const completeOnboarding = useRitmoStore((s) => s.completeOnboarding);
 
-  const finish = () => {
+  const finish = async () => {
     completeOnboarding(name || 'Meu primeiro hábito', emoji);
+    // Soft ask — fails gracefully on web/unsupported envs
+    try {
+      await requestNotificationPermission();
+    } catch {
+      /* ignore */
+    }
     router.replace('/(tabs)');
   };
 
